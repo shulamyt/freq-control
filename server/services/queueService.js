@@ -1,6 +1,6 @@
 var mongo = require('./DBService.js');
 
-module.exports = function (app, socket) {
+module.exports = function (app) {
 
     /*Delete all queue's songs*/
     app.delete('/queue', function (req, res) {

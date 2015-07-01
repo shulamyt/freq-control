@@ -1,19 +1,23 @@
 <div class="row">
     <div class="col-sm-1"> <a href="#" class="btn btn-sm"><span class="glyphicon glyphicon-align-justify"></span></a></div>
     <div class="col-sm-1">
-        <div class="thumbnail">
+        <div>
             <img ng-src="images/user-{{$index+1%6}}.gif" height="60" width="60">
         </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
         <h4>{{song.name}}</h4>
-
         <h5>By {{song.artist}}</h5>
     </div>
     <div class="col-sm-2">
-        <div class="thumbnail">
+        <div>
             <img ng-src="images/thumb{{$index+1%6}}.jpg" >
         </div>
     </div>
+    <div class="col-sm-1">
+        <a href="#" class="btn btn-sm"><img src="images/like.gif" ><span class="badge">{{song.like || '0'}}</span></a>
+        <a href="#" class="btn btn-sm"><img src="images/Dislike.gif" ><span class="badge">{{song.dislike|| '0'}}</span></a>
+    </div>
+
 
 </div>
