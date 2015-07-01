@@ -15,8 +15,8 @@
         </div>
     </div>
     <div class="col-sm-1">
-        <a href="#" class="btn btn-sm"><img src="images/like.gif" ><span class="badge">{{song.like || '0'}}</span></a>
-        <a href="#" class="btn btn-sm"><img src="images/Dislike.gif" ><span class="badge">{{song.dislike|| '0'}}</span></a>
+        <a href="#" class="btn btn-sm" ng-click="doLike(song)"><img src="images/like.gif" ><span class="badge">{{song.like || '0'}}</span></a>
+        <a href="#" class="btn btn-sm" ng-click="doDislike(song)"><img src="images/Dislike.gif" ><span class="badge">{{song.dislike|| '0'}}</span></a>
     </div>
 
 

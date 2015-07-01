@@ -21,4 +21,28 @@ angular.module('FreqControl')
                 addSongModal.hide();
             }
 
+            $scope.doLike = function (song) {
+                console.log("song to like: " + angular.toJson(song));
+                $http.post('/song/like', {name:song.name})
+                    .success(function(data) {
+                        console.log("addLikeSuccess");
+                    }).error(function(data){
+                        console.log("addLikeFailure");
+                    });
+
+
+            }
+
+            $scope.doDislike = function (song) {
+                console.log("song to dislike: " + angular.toJson(song));
+                $http.post('/song/dislike', {name:song.name})
+                    .success(function(data) {
+                        console.log("addDislikeSuccess");
+                    }).error(function(data){
+                        console.log("addDislikeFailure");
+                    });
+
+                addSongModal.hide();
+            }
+
         });
