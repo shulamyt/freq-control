@@ -5,11 +5,30 @@
                 <button type="button" class="close" aria-label="Close" ng-click="$hide()"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" ng-bind="title"></h4>
             </div>
-            <div class="modal-body" ng-bind="content">
+            <div class="modal-body" >
+
+                    <div class="form-group">
+                        <label for="SongNameInput">Song Name</label>
+                        <input type="text" class="form-control" id="SongNameInput" placeholder="Song Name" ng-model="newSong.name">
+                    </div>
+                    <div class="form-group">
+                        <label for="ArtistInput">Artist</label>
+                        <input type="text" class="form-control" id="ArtistInput" placeholder="Artist" ng-model="newSong.artist">
+                    </div>
+                    <div class="form-group">
+                        <label for="AlbumInput">Album</label>
+                        <input type="text" class="form-control" id="AlbumInput" placeholder="Album" ng-model="newSong.album">
+                    </div>
+                    <div class="form-group">
+                        <label for="UrlInput">Url</label>
+                        <input type="text" class="form-control" id="UrlInput" placeholder="Url" ng-model="newSong.url">
+                    </div>
+
                 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="saveNewSong()">Add</button>
+                <button type="button" class="btn btn-default" ng-click="$hide()">Cancel</button>
             </div>
         </div>
     </div>
