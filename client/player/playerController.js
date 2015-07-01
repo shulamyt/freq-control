@@ -6,7 +6,7 @@ angular.module('FreqControl')
             $scope.isMute = false;
             $scope.playClass = "glyphicon-pause";
             $scope.clickNextSong = function() {
-                $scope.nextSong();
+
                 socket.emit('nextSong');
             };
 
@@ -26,7 +26,7 @@ angular.module('FreqControl')
             socket.on('nextSong', $scope.nextSong);
 
             $scope.clickPrevSong = function() {
-                $scope.prevSong();
+
                 socket.emit('prevSong');
             };
 
@@ -157,7 +157,7 @@ angular.module('FreqControl')
 
             $scope.loadUrl = function(url) {
 
-                  urlFromInput =   document.getElementById("inputUrl").value || url;
+                  urlFromInput =   url;
                   $scope.youtubeURL = urlFromInput;
                 return urlFromInput;
 
