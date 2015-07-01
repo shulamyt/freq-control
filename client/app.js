@@ -1,5 +1,5 @@
-var freqControlApp = angular.module('freqControl', ['btford.socket-io']);
-freqControlApp.controller("freqControlCtrl", function ($scope) {
+var freqControlApp = angular.module('FreqControl', ['btford.socket-io']);
+freqControlApp.controller("FreqControlCtrl", function ($scope) {
 
 
 
