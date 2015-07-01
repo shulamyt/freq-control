@@ -3,7 +3,7 @@
  */
 var db = require('./DBService');
 
-module.exports = function (app, io) {
+module.exports = function (app, socket) {
 
     /*Add playlist*/
     app.post('/playlist', function (req, res) {

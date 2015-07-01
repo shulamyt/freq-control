@@ -5,6 +5,7 @@ module.exports = function (app, socket) {
         var name = req.body.name;
         var url = req.body.url;
 
+        /*
         socket.then(function(socketObj){
             socketObj.on('newMessage', function(message){
                 socketObj.broadcast.emit('new message', {
@@ -12,7 +13,7 @@ module.exports = function (app, socket) {
                     message: message
                 });
             });
-        })
+        })*/
     });
 
     /*Get song by ID*/
