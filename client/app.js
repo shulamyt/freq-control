@@ -1,1 +1,10 @@
-angular.module('FreqControl', ['ngRoute','ngResource', 'ngCookies']);
+var freqControlApp = angular.module('FreqControl', ['btford.socket-io']);
+freqControlApp.controller("FreqControlCtrl", function ($scope) {
+
+
+
+
+
+
+
+});
