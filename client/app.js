@@ -1,2 +1,1 @@
-angular.module('FreqControl', ['mgcrea.ngStrap']).controller("freqControlController", function ($scope)
-{});
+angular.module('FreqControl', ['mgcrea.ngStrap', 'youtube-embed']);
