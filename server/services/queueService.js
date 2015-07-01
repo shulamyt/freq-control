@@ -1,7 +1,6 @@
 var mongo = require('./DBService.js');
 
-module.exports = function (app, io) {
-
+module.exports = function (app) {
 
     /*Delete all queue's songs*/
     app.delete('/queue', function (req, res) {
@@ -15,6 +14,6 @@ module.exports = function (app, io) {
     app.get('/queue', function (req, res) {
         var id = req.body.id;
 
-        mongo.GetQueueSongs();
+        var queueSong = mongo.GetQueueSongs();
     });
 }
