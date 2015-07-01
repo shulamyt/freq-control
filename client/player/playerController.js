@@ -30,5 +30,12 @@ angular.module('FreqControl')
                     $scope.ytPlayer.setVolume(currentVolume - 5);
                 }
             }
+
+            $scope.loadUrl = function() {
+
+                  urlFromInput =   document.getElementById("inputUrl").value;
+                  $scope.youtubeURL = urlFromInput;
+
+            }
     }]
 );
