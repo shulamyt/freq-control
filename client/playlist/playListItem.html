@@ -1,9 +1,19 @@
 <div class="row">
-    <div class="col-md-1"> <a href="#" class="btn btn-sm"><span class="glyphicon glyphicon-align-justify"></span></a></div>
-    <div class="col-md-8">
+    <div class="col-sm-1"> <a href="#" class="btn btn-sm"><span class="glyphicon glyphicon-align-justify"></span></a></div>
+    <div class="col-sm-1">
+        <div class="thumbnail">
+            <img ng-src="" >
+        </div>
+    </div>
+    <div class="col-sm-4">
         <h4>{{song.name}}</h4>
 
-        <h5>{{song.artist}}</h5>
+        <h5>By {{song.artist}}</h5>
+    </div>
+    <div class="col-sm-2">
+        <div class="thumbnail">
+            <img ng-src="images/thumb{{$index+1%6}}.jpg" >
+        </div>
     </div>
 
 </div>
