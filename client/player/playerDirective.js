@@ -1,4 +1,4 @@
-angular.module('freqControl')
+angular.module('FreqControl')
     .directive('player', function() {
         return {
             restrict: 'E',
