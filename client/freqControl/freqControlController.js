@@ -1,6 +1,28 @@
 angular.module('FreqControl')
-    .controller('freqControlController', ['$scope', 'socket',
-        function($scope, socket) {
+    .controller('freqControlController', ['$scope', 'socket','$http','$rootScope',
+        function($scope, socket, $http, $rootScope) {
+            $scope.updateSongList = function(songList){
+                $scope.songsList = songList;
+
+            };
+            socket.on('songAdded', $scope.updateSongList);
+            $scope.currentSongIndex = 0;
+
+           var getSongs = function () {
+
+                $http.get('/queue')
+                    .success(function(data) {
+                        console.log("getSongsSuccess");
+                        $scope.songsList = data;
+                        $rootScope.$broadcast('songListInitialized');
+
+                    }).error(function(data){
+                        console.log("getSongsFailure");
+                    });
+
+
+            };
+
             $scope.songsList = [
                 {
                     name:"La Isla Bonita",

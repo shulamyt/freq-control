@@ -1,7 +1,7 @@
 angular.module('FreqControl')
     .controller('playerController', ['$scope', '$rootScope', '$location', '$http', '$sce','socket',
         function($scope, $rootScope, $location, $http, $sce, socket) {
-            $scope.youtubeURL = 'https://www.youtube.com/watch?v=LO2uPU53qds';
+            $scope.youtubeURL = $scope.songsList[ $scope.currentSongIndex].url;
 
             $scope.clickPlayVideo = function() {
                 $scope.playVideo();
@@ -93,6 +93,31 @@ angular.module('FreqControl')
 
             }
             socket.on('loadUrl', $scope.loadUrl);
+
+            $scope.$on('youtube.player.ended', function ($event, ytPlayer) {
+                //will take next song from list
+                //till then will play same song again
+                var index  = $scope.currentSongIndex;
+                var listSize = $scope.songsList.length;
+                if(index >= listSize-1)
+                {
+                    $scope.currentSongIndex = 0;
+                }else
+                {
+                    $scope.currentSongIndex++;
+                }
+                $scope.loadUrl( $scope.songsList[ $scope.currentSongIndex].url);
+
+            });
+
+            $scope.$on('youtube.player.ready', function ($event, ytPlayer) {
+                $scope.playVideo();
+            });
+
+            $scope.$on('songListInitialized', function ($event, ytPlayer) {
+                $scope.loadUrl( $scope.songsList[ $scope.currentSongIndex].url);
+            });
+
 
     }]
 );
