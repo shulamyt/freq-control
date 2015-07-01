@@ -11,7 +11,10 @@ angular.module('FreqControl')
             }
 
             $scope.saveNewSong = function () {
+                $scope.newSong.id = $scope.newSong.url.split('=')[1];
+                $scope.newSong.imageSource = "http://img.youtube.com/vi/" + $scope.newSong.id + "/1.jpg";
                 console.log("song is: " + angular.toJson($scope.newSong));
+
                 //$http.post('/song', $scope.newSong)
                 //    .success(function(data) {
                 //        console.log("addSongSuccess");

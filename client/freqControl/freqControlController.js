@@ -30,7 +30,9 @@ angular.module('FreqControl')
                     artist:"Madonna",
                     album:"",
                     like:5,
-                    dislike:2
+                    dislike:2,
+                    imageSource : "http://img.youtube.com/vi/7YzW1nMB9fk/1.jpg",
+
 
                 },
                 {
@@ -39,6 +41,7 @@ angular.module('FreqControl')
                     artist:"Ellie Goulding",
                     album:"",
                     like:2,
+                    imageSource : "http://img.youtube.com/vi/AJtDXIazrMo/1.jpg",
 
                 },
                 {
@@ -47,7 +50,8 @@ angular.module('FreqControl')
                     artist:"Fifth Harmony",
                     album:"",
                     like:1,
-                    dislike:0
+                    dislike:0,
+                    imageSource : "http://img.youtube.com/vi/YBHQbu5rbdQ/1.jpg"
                 }
 
 
