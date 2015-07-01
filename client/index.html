@@ -1,9 +1,22 @@
-<html>
+<html ng-app="freqControl">
   <head>
       <title>Freq control</title>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/angular-motion.css" />
+
+    <script src="lib/angular.js"></script>
+    <script src="lib/angular-strap.js"></script>
+    <script src="lib/angular-strap.tpl.js"></script>
+    <script src="lib/socket.js"></script>
+    <script src="app.js"></script>
+    <script src="components/services.js"></script>
+    <script src="components/directives.js"></script>
   </head>
 
-  <body>
+  <body ng-controller="freqControlCtrl">
+  <player></player>
     hi all!
   </body>
 
