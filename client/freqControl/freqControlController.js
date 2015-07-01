@@ -2,6 +2,7 @@ angular.module('FreqControl')
     .controller('freqControlController', ['$scope', 'socket',
         function($scope, socket) {
             $scope.currentSongIndex = 0;
+
             $scope.songsList = [
                 {
                     name:"La Isla Bonita",
