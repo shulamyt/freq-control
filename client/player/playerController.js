@@ -1,6 +1,6 @@
 angular.module('FreqControl')
-    .controller('playerController', ['$scope', '$rootScope', '$location', '$http', '$sce',
-        function($scope, $rootScope, $location, $http, $sce) {
+    .controller('playerController', ['$scope', '$rootScope', '$location', '$http', '$sce','socket',
+        function($scope, $rootScope, $location, $http, $sce, socket) {
             $scope.youtubeURL = 'https://www.youtube.com/watch?v=LO2uPU53qds';
 
             $scope.playVideo = function(){
@@ -11,12 +11,27 @@ angular.module('FreqControl')
                 $scope.ytPlayer.stopVideo();
                 }
 
-            $scope.muteVolume = function() {
+            $scope.clickMute = function() {
+                $scope.mute();
+                socket.emit('mute');
+            };
+
+            $scope.mute = function() {
                 $scope.ytPlayer.mute();
-            }
-            $scope.unMuteVolume = function() {
+            };
+
+            socket.on('mute', $scope.mute);
+
+            $scope.clickUnMute = function() {
+                $scope.unMute();
+                socket.emit('unMute');
+            };
+
+            $scope.unMute = function() {
                 $scope.ytPlayer.unMute();
-            }
+            };
+
+            socket.on('unMute', $scope.unMute);
 
             $scope.volumeUp = function() {
                 currentVolume = $scope.ytPlayer.getVolume();

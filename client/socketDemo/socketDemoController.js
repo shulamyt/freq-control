@@ -18,8 +18,8 @@ angular.module('FreqControl')
             };
 
 
-            socket.on('new message', function (data) {
-                alert(data.username + data.message)
+            socket.on('openPopup', function (data) {
+                alert(data.username + data);
             });
         }
     ]);

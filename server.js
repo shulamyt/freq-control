@@ -8,11 +8,8 @@ var q = require('q');
 server.listen(3000, function () {});
 app.use(express.static('client'));
 app.use(bodyParser.json());
-var socketDefer = q.defer();
-io.on('connection', function(socket){
-	socketDefer.resolve(socket);
-	console.log('user connected');
-});
 
-require('./server/services/songService')(app, socketDefer.promise);
-require('./server/services/queueService')(app, socketDefer.promise);
+
+require('./server/services/songService')(app);
+require('./server/services/queueService')(app);
+require('./server/services/playerService')(app, io);
