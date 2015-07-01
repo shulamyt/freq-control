@@ -1,6 +1,4 @@
 var mongoose = require('mongoose');
-
-//Lets connect to our database using the DB server URL.
 mongoose.connect('mongodb://localhost:27017/test');
 /**
  * Lets define our Model for User entity. This model represents a collection in the database.
@@ -16,7 +14,9 @@ var Songs = mongoose.model('Songs', {SongName: String,
 var Queue = mongoose.model('Queue', {SongName: String,
                                         SongUrl: String,
                                         AlbumName: String,
-                                        ArtistName: String});
+                                        ArtistName: String,
+                                        Like: Number,
+                                        DisLike: Number});
 
 module.exports = {
     insertSong : function (vSongName, vSongUrl, vAlbumName, vArtistName) {
@@ -29,10 +29,10 @@ module.exports = {
             DisLike: 0});
 
 
-//Lets try to print and see it. You will see _id is assigned.
+
         console.log(song);
 
-//Lets save it
+
         song.save(function (err, songObj) {
             if (err) {
                 console.log(err);
@@ -45,10 +45,12 @@ module.exports = {
         var songToQueue = new Queue({SongName: vSongName,
             SongUrl: vSongUrl,
             AlbumName: vAlbumName,
-            ArtistName: vArtistName});
+            ArtistName: vArtistName,
+            Like: 0,
+            DisLike: 0});
 
 
-//Lets try to print and see it. You will see _id is assigned.
+
         console.log(songToQueue);
 
 //Lets save it
@@ -73,7 +75,9 @@ module.exports = {
                         SongName: queueItem.SongName,
                         SongUrl: queueItem.SongUrl,
                         AlbumName: queueItem.AlbumName,
-                        ArtistName: queueItem.ArtistName
+                        ArtistName: queueItem.ArtistName,
+                        Like: queueItem.Like,
+                        DisLike: queueItem.DisLike
                     }
                     queueSongs.push(song);
                 });
@@ -85,7 +89,7 @@ module.exports = {
     },
 
     updateSongLike : function (name) {
-        Songs.findOne({SongName: name}, function (err, songObj) {
+        Queue.findOne({SongName: name}, function (err, songObj) {
             if (err) {
                 console.log(err);
             } else if (songObj) {
