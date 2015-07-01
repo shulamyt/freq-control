@@ -113,5 +113,11 @@ angular.module('FreqControl')
             $scope.$on('youtube.player.ready', function ($event, ytPlayer) {
                 $scope.playVideo();
             });
+
+            $scope.$on('songListInitialized', function ($event, ytPlayer) {
+                $scope.loadUrl( $scope.songsList[ $scope.currentSongIndex].url);
+            });
+
+
     }]
 );
