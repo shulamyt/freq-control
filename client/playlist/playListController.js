@@ -22,7 +22,7 @@ angular.module('FreqControl')
                 //        console.log("addSongFailure");
                 //    });
 
-                $scope.addSong( $scope.newSong);
+               // $scope.addSong( $scope.newSong);
                 socket.emit('addNewSong', $scope.newSong);
                 addSongModal.hide();
             }
