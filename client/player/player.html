@@ -1,11 +1,12 @@
 <youtube-video video-url="youtubeURL" player="ytPlayer"></youtube-video>
-<button ng-click="clickPlayVideo()">Play</button>
-<button ng-click="clickStopVideo()">Pause</button>
-<button ng-click="clickMute()">mute volume</button>
-<button ng-click="clickUnMute()">unMute volume</button>
-<button ng-click="clickVolumeUp()">volumeUp</button>
-<button ng-click="clickVolumeDown()">volumeDown</button>
-<button ng-click="clickNextSong()">nextSong</button>
-<button ng-click="clickPrevSong()">prevSong</button>
-<input type="text" id='inputUrl'> </input>
-<button ng-click="clickLoadUrl()">load url</button>
+
+
+
+<div class="btn-group" role="group" >
+    <button type="button" ng-click="clickPlayVideo()"  class="btn btn-default" > <span ng-class="playClass" class="glyphicon" aria-hidden="true"></span></button>
+    <button type="button" ng-click="clickPrevSong()" class="btn btn-default"><span class="glyphicon glyphicon-fast-backward" aria-hidden="true"></span></button>
+    <button type="button" ng-click="clickNextSong()" class="btn btn-default"><span class="glyphicon glyphicon-fast-forward" aria-hidden="true"></span></button>
+    <button type="button" ng-click="clickMute()" class="btn btn-default" ng-model="isMute" bs-checkbox><span class="glyphicon glyphicon-volume-off" aria-hidden="true"></span></button>
+    <button type="button" ng-click="clickVolumeDown()" class="btn btn-default"><span class="glyphicon glyphicon-volume-down" aria-hidden="true"></span></button>
+    <button type="button" ng-click="clickVolumeUp()" class="btn btn-default"><span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span></button>
+</div>
