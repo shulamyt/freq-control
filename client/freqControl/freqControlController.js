@@ -3,8 +3,8 @@ angular.module('FreqControl')
         function($scope, socket) {
             $scope.songsList = [
                 {
-                    name:"Bitch I am",
-                    url:"https://www.youtube.com/watch?v=7hPMmzKs62w&list=PLFgquLnL59alc4Sc12loHmF8atyX7VQrK&index=2",
+                    name:"La Isla Bonita",
+                    url:"https://www.youtube.com/watch?v=7YzW1nMB9fk",
                     artist:"Madonna",
                     album:""
                 },
