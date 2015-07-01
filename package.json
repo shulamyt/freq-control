@@ -2,5 +2,7 @@
   "name": "freq-control",
   "version": "0.0.1",
   "description": "freq-control",
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.13.0"
+  }
 }
