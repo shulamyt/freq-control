@@ -5,6 +5,9 @@ angular.module('FreqControl')
             $scope.isPlay = true;
             $scope.isMute = false;
             $scope.playClass = "glyphicon-pause";
+            $scope.playerVars = {
+                controls: 0
+            };
             $scope.clickNextSong = function() {
 
                 socket.emit('nextSong');
@@ -180,6 +183,7 @@ angular.module('FreqControl')
 
             $scope.$on('youtube.player.ready', function ($event, ytPlayer) {
                 $scope.playVideo();
+
             });
 
             $scope.$on('songListInitialized', function ($event, ytPlayer) {
