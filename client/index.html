@@ -13,14 +13,14 @@
   <script src="lib/angular-cookies.js"></script>
   <script src="lib/angular-strap.js"></script>
   <script src="lib/angular-strap.tpl.js"></script>
-  <script src="lib/socket.js"></script>
-
+<script src="lib/socket.io.js"></script>
 
 </head>
 
-<body ng-controller="FreqControlCtrl">
+<body >
 <player></player>
 <play-list></play-list>
+<socket-demo></socket-demo>
 
 </body>
 
@@ -33,9 +33,14 @@
 <!-- Controller -->
 <script src="player/playerController.js"></script>
 <script src="playList/playListController.js"></script>
+<script src="socketDemo/socketDemoController.js"></script>
 
 <!-- Directive -->
 <script src="player/playerDirective.js"></script>
 <script src="playList/playListDirective.js"></script>
+<script src=socketDemo/socketDemoDirective.js></script>
+
+ <!-- Services -->
+  <script src=services/socketFactory.js></script>
 
 </html>

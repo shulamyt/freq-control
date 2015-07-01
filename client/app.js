@@ -1,1 +1,1 @@
-var freqControlApp = angular.module('FreqControl', ['btford.socket-io']);
+var freqControlApp = angular.module('FreqControl', []);
