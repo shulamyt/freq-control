@@ -1,6 +1,14 @@
 angular.module('FreqControl')
     .controller('freqControlController', ['$scope', 'socket',
         function($scope, socket) {
+
+
+            $scope.updateSongLists = function(songList){
+                $scope.songsList = songList;
+            };
+
+            socket.on('songAdded' , $scope.updateSongLists);
+
             $scope.songsList = [
                 {
                     name:"La Isla Bonita",

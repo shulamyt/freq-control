@@ -10,6 +10,6 @@ app.use(express.static('client'));
 app.use(bodyParser.json());
 
 
-require('./server/services/songService')(app);
-require('./server/services/queueService')(app);
+require('./server/services/songService')(app, io);
+require('./server/services/queueService')(app, io);
 require('./server/services/playerService')(app, io);
