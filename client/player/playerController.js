@@ -3,13 +3,26 @@ angular.module('FreqControl')
         function($scope, $rootScope, $location, $http, $sce, socket) {
             $scope.youtubeURL = 'https://www.youtube.com/watch?v=LO2uPU53qds';
 
+            $scope.clickPlayVideo = function() {
+                $scope.playVideo();
+                socket.emit('play');
+            };
+
             $scope.playVideo = function(){
                 $scope.ytPlayer.playVideo();
                 }
 
+            socket.on('play', $scope.playVideo);
+
+            $scope.clickStopVideo = function() {
+                $scope.stopVideo();
+                socket.emit('stop');
+            };
             $scope.stopVideo = function(){
                 $scope.ytPlayer.stopVideo();
                 }
+
+            socket.on('stop', $scope.stopVideo);
 
             $scope.clickMute = function() {
                 $scope.mute();
@@ -33,24 +46,53 @@ angular.module('FreqControl')
 
             socket.on('unMute', $scope.unMute);
 
+            $scope.clickVolumeUp = function() {
+                $scope.volumeUp();
+                socket.emit('volumeUp');
+            };
+
             $scope.volumeUp = function() {
-                currentVolume = $scope.ytPlayer.getVolume();
+                var currentVolume = $scope.ytPlayer.getVolume();
                 if(currentVolume<100){
                     $scope.ytPlayer.setVolume(currentVolume + 5);
                 }
             }
+
+            socket.on('volumeUp', $scope.volumeUp);
+
+            $scope.clickVolumeUp = function() {
+                $scope.volumeUp();
+                socket.emit('volumeUp');
+            };
+
+            $scope.clickVolumeDown = function() {
+                $scope.volumeDown();
+                socket.emit('volumeDown');
+            };
+
             $scope.volumeDown = function() {
-                currentVolume = $scope.ytPlayer.getVolume();
+                var currentVolume = $scope.ytPlayer.getVolume();
                 if(currentVolume>0){
                     $scope.ytPlayer.setVolume(currentVolume - 5);
                 }
             }
 
-            $scope.loadUrl = function() {
+            socket.on('volumeDown', $scope.volumeDown);
 
-                  urlFromInput =   document.getElementById("inputUrl").value;
+
+            $scope.clickLoadUrl = function() {
+                var url = $scope.loadUrl();
+                socket.emit('loadUrl', url);
+            };
+
+            $scope.loadUrl = function(url) {
+
+                  urlFromInput =   document.getElementById("inputUrl").value || url;
                   $scope.youtubeURL = urlFromInput;
+                return urlFromInput;
 
             }
+            socket.on('loadUrl', $scope.loadUrl);
+
     }]
 );
