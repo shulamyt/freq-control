@@ -1,10 +1,10 @@
 var mongo = require('./DBService.js');
 
-
 module.exports = function (app, socket) {
 
     /*Create new song*/
     app.post('/song', function (req, res) {
+
         var name = req.body.name;
         var url = req.body.url;
         var artist = req.body.artist;

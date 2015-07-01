@@ -9,53 +9,47 @@ var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 
 // Connection URL. This is where your mongodb server is running.
-var url = 'mongodb://localhost:27017/test';
-
-// Use connect method to connect to the Server
-function connectDB() {
-    MongoClient.connect(url, function (err, db) {
-        if (err) {
-            console.log('Unable to connect to the mongoDB server. Error:', err);
-
-        } else {
-            //HURRAY!! We are connected. :)
-            console.log('Connection established to', url);
-        }
-        });
-};
-
-function disconnectDB() {
-    //Close connection
-    db.close();
-};
+var url = 'mongodb://yansh03:27017/test';
 
 module.exports = {
     insertSong : function (vSongName, vSongUrl, vAlbumName, vArtistName) {
-        connectDB();
+        MongoClient.connect(url, function (err, db) {
+            if (err) {
+                console.log('Unable to connect to the mongoDB server. Error:', err);
+                return;
+            }
 
-        var collectionSongs = db.collection('songs');
-        var song = {
-            SongName: vSongName,
-            SongUrl: vSongUrl,
-            AlbumName: vAlbumName,
-            vArtistName: vArtistName,
-            Like: "0",
-            DisLike: "0"
-        };
-        collectionSongs.insert(song);
+            var collectionSongs = db.collection('songs');
+            var song = {
+                SongName: vSongName,
+                SongUrl: vSongUrl,
+                AlbumName: vAlbumName,
+                ArtistName: vArtistName,
+                Like: "0",
+                DisLike: "0"
+            };
+            collectionSongs.insert(song);
 
-        var collectionQueue = db.collection('queue');
-        var queue = {SongName: vSongName, SongUrl: vSongUrl, AlbumName: vAlbumName, vArtistName: vArtistName};
-        collectionQueue.insert(queue);
+            var collectionQueue = db.collection('queue');
+            var queue = {SongName: vSongName, SongUrl: vSongUrl, AlbumName: vAlbumName, vArtistName: vArtistName};
+            collectionQueue.insert(queue);
 
-        disconnectDB(db);
+            db.close();
+        });
     },
 
     GetQueueSongs : function () {
+        MongoClient.connect(url, function (err, db) {
+            if (err) {
+                console.log('Unable to connect to the mongoDB server. Error:', err);
+                return;
+            }
 
-        var collectionQueue = db.collection('queue');
-        var queue = {};
-        collectionQueue.insert(queue);
+            var collectionQueue = db.collection('queue');
+            var queue = {};
+            collectionQueue.insert(queue);
 
+            db.close();
+        });
     }
 };
