@@ -1,87 +1,113 @@
+var mongoose = require('mongoose');
+
+//Lets connect to our database using the DB server URL.
+mongoose.connect('mongodb://localhost:27017/test');
 /**
- * Created by MEITALBE on 7/1/2015.
- */
+ * Lets define our Model for User entity. This model represents a collection in the database.
+ * We define the possible schema of User document and data types of each field.
+ * */
+var Songs = mongoose.model('Songs', {SongName: String,
+                                        SongUrl: String,
+                                        AlbumName: String,
+                                        ArtistName: String,
+                                        Like: Number,
+                                        DisLike: Number});
 
-//lets require/import the mongodb native drivers.
-var mongodb = require('mongodb');
-
-//We need to work with "MongoClient" interface in order to connect to a mongodb server.
-var MongoClient = mongodb.MongoClient;
-
-// Connection URL. This is where your mongodb server is running.
-var url = 'mongodb://localhost:27017/test';
+var Queue = mongoose.model('Queue', {SongName: String,
+                                        SongUrl: String,
+                                        AlbumName: String,
+                                        ArtistName: String});
 
 module.exports = {
     insertSong : function (vSongName, vSongUrl, vAlbumName, vArtistName) {
-        MongoClient.connect(url, function (err, db) {
+        //Lets add song
+        var song = new Songs({SongName: vSongName,
+            SongUrl: vSongUrl,
+            AlbumName: vAlbumName,
+            ArtistName: vArtistName,
+            Like: 0,
+            DisLike: 0});
+
+
+//Lets try to print and see it. You will see _id is assigned.
+        console.log(song);
+
+//Lets save it
+        song.save(function (err, songObj) {
             if (err) {
-                console.log('Unable to connect to the mongoDB server. Error:', err);
-                return;
+                console.log(err);
+            } else {
+                console.log('song saved successfully:', songObj);
             }
+        });
 
-            var collectionSongs = db.collection('songs');
-            var song = {
-                SongName: vSongName,
-                SongUrl: vSongUrl,
-                AlbumName: vAlbumName,
-                ArtistName: vArtistName,
-                Like: "0",
-                DisLike: "0"
-            };
-            collectionSongs.insert(song);
+        //Lets add song to queue
+        var songToQueue = new Queue({SongName: vSongName,
+            SongUrl: vSongUrl,
+            AlbumName: vAlbumName,
+            ArtistName: vArtistName});
 
-            var collectionQueue = db.collection('queue');
-            var queue = {SongName: vSongName, SongUrl: vSongUrl, AlbumName: vAlbumName, ArtistName: vArtistName};
-            collectionQueue.insert(queue);
 
-            db.close();
+//Lets try to print and see it. You will see _id is assigned.
+        console.log(songToQueue);
+
+//Lets save it
+        songToQueue.save(function (err, songToQueueObj) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('song saved successfully:', songToQueueObj);
+            }
         });
     },
 
     getQueueSongs : function () {
-        MongoClient.connect(url, function (err, db) {
+        var queueSongs = [];
+        Queue.find({}, function (err, queueObj) {
             if (err) {
-                console.log('Unable to connect to the mongoDB server. Error:', err);
-                return;
+                console.log(err);
+            } else if (queueObj) {
+                console.log('Found:', queueObj);
+                queueObj.forEach(function (queueItem) {
+                    var song = {
+                        SongName: queueItem.SongName,
+                        SongUrl: queueItem.SongUrl,
+                        AlbumName: queueItem.AlbumName,
+                        ArtistName: queueItem.ArtistName
+                    }
+                    queueSongs.push(song);
+                });
+
             }
+            return queueSongs;
 
-            var collectionQueue = db.collection('queue');
-            var queue = {};
-            collectionQueue.find({});
-
-            //TODO - to return list of objects back
-
-
-            db.close();
         });
     },
+
     updateSongLike : function (name) {
-        MongoClient.connect(url, function (err, db) {
+        Songs.findOne({SongName: name}, function (err, songObj) {
             if (err) {
-                console.log('Unable to connect to the mongoDB server. Error:', err);
-                return;
+                console.log(err);
+            } else if (songObj) {
+                console.log('Found:', songObj);
+
+                songObj.Like = songObj.Like + 1;
+
+                    //Lets save it
+                songObj.save(function (err) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            console.log('Updated', songObj);
+                        }
+                    });
+            } else {
+                console.log('Song not found!');
             }
-
-            var collectionSongs = db.collection('songs');
-            var selectedSong = collectionSongs.find({"SongName": name});
-            //TODO - to update the the selectedSong record
-
-            db.close();
         });
     },
 
     updateSongDisLike : function (name) {
-        MongoClient.connect(url, function (err, db) {
-            if (err) {
-                console.log('Unable to connect to the mongoDB server. Error:', err);
-                return;
-            }
 
-            var collectionSongs = db.collection('songs');
-            var selectedSong = collectionSongs.find({"SongName": name});
-            //TODO - to update the the selectedSong record
-
-            db.close();
-        });
     }
 };
