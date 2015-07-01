@@ -1,6 +1,7 @@
 var mongo = require('./DBService.js');
+var QueueService = require('./queueService.js')
 
-module.exports = function (app, socket) {
+module.exports = function (app, io) {
 
     /*Create new song*/
     app.post('/song', function (req, res) {
@@ -11,17 +12,8 @@ module.exports = function (app, socket) {
         var album = req.body.album;
 
         mongo.insertSong(name, url, album, artist);
-
-
-        /*
-        socket.then(function(socketObj){
-            socketObj.on('newMessage', function(message){
-                socketObj.broadcast.emit('new message', {
-                    username: socketObj.username,
-                    message: message
-                });
-            });
-        })*/
+        var songs = mongo.getQueueSongs();
+        io.emit('songAdded',  songs);
     });
 
     /*Get song by Name*/
