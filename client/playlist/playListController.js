@@ -1,6 +1,6 @@
 angular.module('FreqControl')
     .controller('playListController',
-        function($scope, $modal) {
+        function($scope, $modal, $http) {
             $scope.newSong = {};
             $scope.title = "Add Song";
             var addSongModal = $modal({scope: $scope, template: 'playlist/addSongForm.html', show: false, backdrop:'static'});
@@ -11,6 +11,13 @@ angular.module('FreqControl')
 
             $scope.saveNewSong = function () {
                 console.log("song is: " + angular.toJson($scope.newSong));
+                $http.post('/song', $scope.newSong)
+                    .success(function(data) {
+                        console.log("addSongSuccess");
+                    }).error(function(data){
+                        console.log("addSongFailure");
+                    });
+
                 addSongModal.hide();
             }
 
