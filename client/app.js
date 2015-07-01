@@ -1,1 +1,1 @@
-var freqControlApp = angular.module('FreqControl', []);
+angular.module('FreqControl', []);
