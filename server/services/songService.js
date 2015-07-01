@@ -3,6 +3,15 @@ var QueueService = require('./queueService.js')
 
 module.exports = function (app, io) {
 
+    io.on('connection', function(socket){
+        socket.on('addNewSong', addNewSong);
+
+    });
+
+    addNewSong = function(song){
+        io.emit('addNewSong', song);
+    };
+
     /*Create new song*/
     app.post('/song', function (req, res) {
 

@@ -1,6 +1,6 @@
 angular.module('FreqControl')
     .controller('playListController',
-        function($scope, $modal, $http) {
+        function($scope, $modal, $http, socket) {
             $scope.sliderValue = 2;
             $scope.newSong = {};
             $scope.title = "Add Song";
@@ -12,15 +12,23 @@ angular.module('FreqControl')
 
             $scope.saveNewSong = function () {
                 console.log("song is: " + angular.toJson($scope.newSong));
-                $http.post('/song', $scope.newSong)
-                    .success(function(data) {
-                        console.log("addSongSuccess");
-                    }).error(function(data){
-                        console.log("addSongFailure");
-                    });
+                //$http.post('/song', $scope.newSong)
+                //    .success(function(data) {
+                //        console.log("addSongSuccess");
+                //    }).error(function(data){
+                //        console.log("addSongFailure");
+                //    });
 
+                $scope.addSong( $scope.newSong);
+                socket.emit('addNewSong', $scope.newSong);
                 addSongModal.hide();
             }
+
+            $scope.addSong = function (song) {
+                $scope.songsList.push( song);
+            }
+
+            socket.on('addNewSong', $scope.addSong );
 
             $scope.getSelectedClass = function(index)
             {
