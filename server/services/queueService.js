@@ -1,3 +1,5 @@
+var mongo = require('./DBService.js');
+
 module.exports = function (app, socket) {
 
     /*Delete all queue's songs*/
@@ -12,6 +14,6 @@ module.exports = function (app, socket) {
     app.get('/queue', function (req, res) {
         var id = req.body.id;
 
-        // TODO DB
+        mongo.GetQueueSongs();
     });
 }

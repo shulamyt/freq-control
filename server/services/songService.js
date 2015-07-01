@@ -1,9 +1,16 @@
+var mongo = require('./DBService.js');
+
+
 module.exports = function (app, socket) {
 
     /*Create new song*/
     app.post('/song', function (req, res) {
         var name = req.body.name;
         var url = req.body.url;
+        var artist = req.body.artist;
+        var album = req.body.album;
+
+        mongo.insertSong(name, url, album, artist);
 
         /*
         socket.then(function(socketObj){
