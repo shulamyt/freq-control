@@ -94,5 +94,10 @@ angular.module('FreqControl')
             }
             socket.on('loadUrl', $scope.loadUrl);
 
+            $scope.$on('youtube.player.ended', function ($event, ytPlayer) {
+                //will take next song from list
+                //till then will play same song again
+                ytPlayer.playVideo();
+            });
     }]
 );
