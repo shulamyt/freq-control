@@ -1,4 +1,5 @@
 <div>
+
     <div>
         <a href="#" class="btn btn-info btn-lg" ng-click="onAddClick()"><span class="glyphicon glyphicon-plus-sign"></span> Add Song</a>
     </div>
@@ -6,7 +7,7 @@
         <div class="panel-heading">Play List</div>
         <div class="panel-body">
         <div class="list-group" ng-repeat="song in songsList">
-             <play-list-item></play-list-item>
+             <play-list-item class="list-group-item" ng-class="getSelectedClass($index)"></play-list-item>
         </div>
         </div>
     </div>

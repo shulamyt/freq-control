@@ -1,6 +1,7 @@
 angular.module('FreqControl')
     .controller('playListController',
         function($scope, $modal, $http) {
+            $scope.sliderValue = 2;
             $scope.newSong = {};
             $scope.title = "Add Song";
             var addSongModal = $modal({scope: $scope, template: 'playlist/addSongForm.html', show: false, backdrop:'static'});
@@ -19,6 +20,14 @@ angular.module('FreqControl')
                     });
 
                 addSongModal.hide();
+            }
+
+            $scope.getSelectedClass = function(index)
+            {
+                if (index === $scope.currentSongIndex)
+                    return "list-group-item-info"
+                return "";
+
             }
 
             $scope.doLike = function (song) {
