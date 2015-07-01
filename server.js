@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
-var server = app.listen(3000, function () {});
+
+app.listen(3000, function () {});
+app.use(express.static('client'));
 
 app.get('/Shula', function (req, res) {
   res.send('<div>Hello Shula!</div>');
