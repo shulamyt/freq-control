@@ -3,6 +3,47 @@ angular.module('FreqControl')
         function($scope, $rootScope, $location, $http, $sce, socket) {
             $scope.youtubeURL = $scope.songsList[ $scope.currentSongIndex].url;
 
+            $scope.clickNextSong = function() {
+                $scope.nextSong();
+                socket.emit('nextSong');
+            };
+
+            $scope.nextSong = function(){
+                var index  = $scope.currentSongIndex;
+                var listSize = $scope.songsList.length;
+                if(index >= listSize-1)
+                {
+                    $scope.currentSongIndex = 0;
+                }else
+                {
+                    $scope.currentSongIndex++;
+                }
+                $scope.loadUrl( $scope.songsList[ $scope.currentSongIndex].url);
+            }
+
+            socket.on('nextSong', $scope.nextSong);
+
+            $scope.clickPrevSong = function() {
+                $scope.prevSong();
+                socket.emit('prevSong');
+            };
+
+            $scope.prevSong = function(){
+                var index  = $scope.currentSongIndex;
+                var listSize = $scope.songsList.length;
+                if(index != 0)
+                {
+                    $scope.currentSongIndex--;
+                }else
+                {
+                    $scope.currentSongIndex=listSize-1;
+                }
+                $scope.loadUrl( $scope.songsList[ $scope.currentSongIndex].url);
+            }
+
+            socket.on('prevSong', $scope.prevSong);
+
+
             $scope.clickPlayVideo = function() {
                 $scope.playVideo();
                 socket.emit('play');
@@ -10,7 +51,7 @@ angular.module('FreqControl')
 
             $scope.playVideo = function(){
                 $scope.ytPlayer.playVideo();
-                }
+            }
 
             socket.on('play', $scope.playVideo);
 
@@ -95,8 +136,6 @@ angular.module('FreqControl')
             socket.on('loadUrl', $scope.loadUrl);
 
             $scope.$on('youtube.player.ended', function ($event, ytPlayer) {
-                //will take next song from list
-                //till then will play same song again
                 var index  = $scope.currentSongIndex;
                 var listSize = $scope.songsList.length;
                 if(index >= listSize-1)

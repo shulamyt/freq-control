@@ -8,8 +8,17 @@ module.exports = function (app, io) {
         socket.on('volumeUp', volumeUp);
         socket.on('volumeDown', volumeDown);
         socket.on('loadUrl', loadUrl);
+        socket.on('prevSong', prevSong);
+        socket.on('nextSong', nextSong);
     });
 
+    prevSong = function(){
+        io.emit("prevSong");
+    };
+
+    nextSong = function(){
+        io.emit("nextSong");
+    };
     play = function(){
         io.emit("play");
     };
