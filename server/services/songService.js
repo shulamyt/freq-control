@@ -12,6 +12,7 @@ module.exports = function (app, socket) {
 
         mongo.insertSong(name, url, album, artist);
 
+
         /*
         socket.then(function(socketObj){
             socketObj.on('newMessage', function(message){
@@ -23,9 +24,9 @@ module.exports = function (app, socket) {
         })*/
     });
 
-    /*Get song by ID*/
+    /*Get song by Name*/
     app.get('/song', function (req, res) {
-        var id = req.body.id;
+        var name = req.body.name;
 
         // TODO DB
     });
@@ -40,17 +41,20 @@ module.exports = function (app, socket) {
 
     /*Mark Like a song by ID*/
     app.post('/song/like', function (req, res) {
-        var id = req.body.id;
+        var name = req.body.name;
 
         // TODO DB
+        mongo.updateSongLike(name);
         // TODO push
     });
 
     /*Mark Dislike a song by ID*/
     app.post('/song/dislike', function (req, res) {
-        var id = req.body.id;
+        var name = req.body.name;
 
         // TODO DB
+        mongo.updateSongDislike(name);
+
         // TODO push
     });
 

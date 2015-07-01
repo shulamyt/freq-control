@@ -9,7 +9,7 @@ var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 
 // Connection URL. This is where your mongodb server is running.
-var url = 'mongodb://yansh03:27017/test';
+var url = 'mongodb://localhost:27017/test';
 
 module.exports = {
     insertSong : function (vSongName, vSongUrl, vAlbumName, vArtistName) {
@@ -31,14 +31,14 @@ module.exports = {
             collectionSongs.insert(song);
 
             var collectionQueue = db.collection('queue');
-            var queue = {SongName: vSongName, SongUrl: vSongUrl, AlbumName: vAlbumName, vArtistName: vArtistName};
+            var queue = {SongName: vSongName, SongUrl: vSongUrl, AlbumName: vAlbumName, ArtistName: vArtistName};
             collectionQueue.insert(queue);
 
             db.close();
         });
     },
 
-    GetQueueSongs : function () {
+    getQueueSongs : function () {
         MongoClient.connect(url, function (err, db) {
             if (err) {
                 console.log('Unable to connect to the mongoDB server. Error:', err);
@@ -47,7 +47,39 @@ module.exports = {
 
             var collectionQueue = db.collection('queue');
             var queue = {};
-            collectionQueue.insert(queue);
+            collectionQueue.find({});
+
+            //TODO - to return list of objects back
+
+
+            db.close();
+        });
+    },
+    updateSongLike : function (name) {
+        MongoClient.connect(url, function (err, db) {
+            if (err) {
+                console.log('Unable to connect to the mongoDB server. Error:', err);
+                return;
+            }
+
+            var collectionSongs = db.collection('songs');
+            var selectedSong = collectionSongs.find({"SongName": name});
+            //TODO - to update the the selectedSong record
+
+            db.close();
+        });
+    },
+
+    updateSongDisLike : function (name) {
+        MongoClient.connect(url, function (err, db) {
+            if (err) {
+                console.log('Unable to connect to the mongoDB server. Error:', err);
+                return;
+            }
+
+            var collectionSongs = db.collection('songs');
+            var selectedSong = collectionSongs.find({"SongName": name});
+            //TODO - to update the the selectedSong record
 
             db.close();
         });
