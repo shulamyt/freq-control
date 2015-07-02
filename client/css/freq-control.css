@@ -1,0 +1,11 @@
+iframe{
+    display: block;
+}
+
+.btn-group{
+    background-color: #E6E6E6;
+}
+
+.btn.btn-default.mute.ng-pristine.ng-untouched.ng-valid {
+    margin-left: 404px;
+}
