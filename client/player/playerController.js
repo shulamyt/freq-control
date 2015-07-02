@@ -9,7 +9,6 @@ angular.module('FreqControl')
                 controls: 0
             };
             $scope.clickNextSong = function() {
-
                 socket.emit('nextSong');
             };
 
@@ -29,7 +28,6 @@ angular.module('FreqControl')
             socket.on('nextSong', $scope.nextSong);
 
             $scope.clickPrevSong = function() {
-
                 socket.emit('prevSong');
             };
 
@@ -52,15 +50,12 @@ angular.module('FreqControl')
             $scope.clickPlayVideo = function() {
                 if ($scope.isPlay)
                 {
-                    $scope.stopVideo();
                     socket.emit('stop');
-                    $scope.playClass = "glyphicon-play";
+
                 }
                 else
                 {
-                    $scope.playVideo();
                     socket.emit('play');
-                    $scope.playClass = "glyphicon-pause";
 
                 }
 
@@ -68,6 +63,7 @@ angular.module('FreqControl')
             };
 
             $scope.playVideo = function(){
+                $scope.playClass = "glyphicon-pause";
                 $scope.ytPlayer.playVideo();
                 $scope.isPlay = true;
             }
@@ -75,6 +71,7 @@ angular.module('FreqControl')
             socket.on('play', $scope.playVideo);
 
             $scope.stopVideo = function(){
+                $scope.playClass = "glyphicon-play";
                 $scope.ytPlayer.stopVideo();
                 $scope.isPlay = false;
                 }
@@ -84,11 +81,9 @@ angular.module('FreqControl')
             $scope.clickMute = function() {
                 if($scope.isMute)
                 {
-                    $scope.unMute();
                     socket.emit('unMute');
                 }else
                 {
-                    $scope.mute();
                     socket.emit('mute');
                 }
 
@@ -111,7 +106,6 @@ angular.module('FreqControl')
             socket.on('unMute', $scope.unMute);
 
             $scope.clickVolumeUp = function() {
-                $scope.volumeUp();
                 socket.emit('volumeUp');
             };
 
@@ -131,12 +125,10 @@ angular.module('FreqControl')
             socket.on('volumeUp', $scope.volumeUp);
 
             $scope.clickVolumeUp = function() {
-                $scope.volumeUp();
                 socket.emit('volumeUp');
             };
 
             $scope.clickVolumeDown = function() {
-                $scope.volumeDown();
                 socket.emit('volumeDown');
             };
 
