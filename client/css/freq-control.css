@@ -9,3 +9,24 @@ iframe{
 .btn.btn-default.mute.ng-pristine.ng-untouched.ng-valid {
     margin-left: 404px;
 }
+
+.btn.btn-default.mute.ng-valid.ng-dirty.ng-touched{
+    margin-left: 404px;
+}
+
+.btn.btn-default.mute.ng-valid.ng-dirty.ng-touched.ng-valid-parse{
+    margin-left: 404px;
+}
+
+.btn.btn-default.mute.ng-valid.ng-dirty.ng-valid-parse.active.ng-touched{
+    margin-left: 404px;
+}
+
+.btn.btn-default.mute.ng-untouched.ng-valid.ng-dirty.ng-valid-parse.active{
+    margin-left: 404px;
+}
+
+.btn.btn-default.mute.ng-untouched.ng-valid.ng-dirty.ng-valid-parse{
+    margin-left: 404px;
+}
+
