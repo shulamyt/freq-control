@@ -25,13 +25,13 @@ angular.module('FreqControl')
 
             $scope.songsList = [
                 {
-                    name:"La Isla Bonita",
-                    url:"https://www.youtube.com/watch?v=7YzW1nMB9fk",
-                    artist:"Madonna",
+                    name:"Habib Galbi",
+                    url:"https://www.youtube.com/watch?v=g3bjZlmsb4A",
+                    artist:"A-WA",
                     album:"",
                     like:5,
                     dislike:2,
-                    imageSource : "http://img.youtube.com/vi/7YzW1nMB9fk/1.jpg",
+                    imageSource : "http://img.youtube.com/vi/g3bjZlmsb4A/1.jpg",
 
 
                 },
